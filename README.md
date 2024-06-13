@@ -83,6 +83,7 @@ First, I need to point out that I had to manually set a cutoff for the recipes t
 There isn't exactly a strong trendline. The recipes with over 20 ingredients maybe seem less likely to take a long time, but this could just be due to a small sample size. The overwhelming majority of recipes use between 0 and 20 ingredients and take less than 100 minutes. I think this simple fact accounts for the cluster that seems to appear, and not any actual relationship between the variables.
 
 Here's an interesting pivot table:
+
 |   n_steps |   1 |        2 |         3 |       4 |       5 |
 |----------:|----:|---------:|----------:|--------:|--------:|
 |         1 | nan |  27.459  |   9.80132 | 22.2837 | 24.1061 |
@@ -90,6 +91,7 @@ Here's an interesting pivot table:
 |         3 |   5 | 113.053  |  20.3306  | 22.2534 | 44.4728 |
 |         4 |   5 | 486.832  | 139.039   | 51.9708 | 36.4664 |
 |         5 |   5 | 348.797  |  47.9932  | 91.3391 | 74.3867 |
+
 
 This is how you read this table: If you take all the recipes with, for example, 3 steps and 2 ingredients, and take the average of the minutes for those recipes, you get 113.053. The rows represent the number of steps, and the columns the number of ingredients. From this limited preview, it actually seems as if the recipes with 2 ingredients only tended to take a long time. However, any present trends aren't exactly clear.
 
@@ -106,7 +108,7 @@ In order to determine the missigness mechanism of the "review" column, I decided
   frameborder="0"
 ></iframe>
 
-As you can see, the difference between the mean number of steps for recipes with and without missing reviews was abnormally high, higher than any experimental result. Thus we can conclude that they are in fact  related, so reviews are missing at random with respect to the number of steps.
+The red line represents the observed test statistic, and the blue bars represent obtained experimental statistics. As you can see, the difference between the mean number of steps for recipes with and without missing reviews was abnormally high, higher than any experimental result. Thus we can conclude that they are in fact  related, so reviews are missing at random with respect to the number of steps.
 
 # Hypothesis Testing
 
@@ -120,7 +122,11 @@ This result means we would reject the null hypothesis. We can't prove the altern
 
 # Framing a Prediction Problem
 
+Using machine learning, I set out to use features in the data to predict how long a recipe would take, in minutes. This is a regression problem, since we are trying to predict a continuous, quantitative variable. I chose this variable to predict because, out of all of them, it seems like it would be the most related to other variables. I'm evaluating my model using root mean square error, which is a good metric for continuous data. I thought it would be better to use this than something like R squared because I wanted to know, generally, how far off my predictions were, and not how correlated they were.
+
 # Baseline Model
+
+
 
 # Final Model
 
