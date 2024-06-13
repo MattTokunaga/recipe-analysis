@@ -39,7 +39,7 @@ The columns in this one are pretty self explanatory. The only thing I didn't sho
 # Data Cleaning and Exploratory Data Analysis
 
 ## Data Cleaning
-This data is honestly already pretty clean, but a few extra steps do need to be taken. First, I merged the two datasets together. This was possible thanks to the unique recipe ID that the website gives each recipe. Then, I averaged the ratings for each recipe to add an average rating column. 
+This data is honestly already pretty clean, but a few extra steps do need to be taken. First, I merged the two datasets together. This was possible thanks to the unique recipe ID that the website gives each recipe. Then, I averaged the ratings for each recipe to add an average rating column. This was after filling any missing ratings with 0.
 
 Additionally, the datasets included a weird quirk. Instead of actual lists, some columns, such as "tags," contained information that looked like a list but was actually just one long string. However, splitting the strings and turning them into actual lists was simple using the `.split` command in Python.
 
@@ -68,7 +68,36 @@ One variable I decided to look at was the number of ingredients in each recipe. 
 
 The graph clearly shows that most recipes have around 8 ingredients, with anything above 20 or so being extremely unlikely. However, there is still a positive skew, mostly due to the fact that you can't have negative outliers in this context. You also can't really have exactly 0 ingredients for obvious reasons. 
 
+I also decided to look at the relationship between two variables, a process known as **bivariate analysis**. 
+
+However, this wasn't as fruitful. Most of the variables I looked at didn't seem to be related in obvious ways. For example, here's a plot of the relationship between the number of ingredients and the minutes the recipe takes:
+<iframe
+  src="assets/minutes_ingredients.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+First, I need to point out that I had to manually set a cutoff for the recipes that would be shown. The number of minutes in each recipe had some very extreme outliers, and so I limited the graph to only show recipes that take less than about 1500 minutes. 
+
+There isn't exactly a strong trendline. The recipes with over 20 ingredients maybe seem less likely to take a long time, but this could just be due to a small sample size. The overwhelming majority of recipes use between 0 and 20 ingredients and take less than 100 minutes. I think this simple fact accounts for the cluster that seems to appear, and not any actual relationship between the variables.
+
+Here's an interesting pivot table:
+|   n_steps |   1 |        2 |         3 |       4 |       5 |
+|----------:|----:|---------:|----------:|--------:|--------:|
+|         1 | nan |  27.459  |   9.80132 | 22.2837 | 24.1061 |
+|         2 |  20 |  28.1034 |  35.8803  | 12.9437 | 20.8824 |
+|         3 |   5 | 113.053  |  20.3306  | 22.2534 | 44.4728 |
+|         4 |   5 | 486.832  | 139.039   | 51.9708 | 36.4664 |
+|         5 |   5 | 348.797  |  47.9932  | 91.3391 | 74.3867 |
+
+This is how you read this table: If you take all the recipes with, for example, 3 steps and 2 ingredients, and take the average of the minutes for those recipes, you get 113.053. The rows represent the number of steps, and the columns the number of ingredients. From this limited preview, it actually seems as if the recipes with 2 ingredients only tended to take a long time. However, any present trends aren't exactly clear.
+
 # Assessment of Missingness
+
+This dataset doesn't have much missing data, but there is some missing. At the very beginning I filled any missing ratings with 0. The only other columns that contained any missing data at all are the "name" column, the "review" column, and the "description" column. However, I would have to say that I don't think any of these would be considered NMAR, or "Not Missing at Random." The reason is that I believe these are missing by design. If there is no description listed, for example, it is probably because the person that submitted the recipe didn't put a description. That would be missing by design, rather than not missing at random.
+
+
 
 # Hypothesis Testing
 
