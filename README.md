@@ -97,9 +97,26 @@ This is how you read this table: If you take all the recipes with, for example, 
 
 This dataset doesn't have much missing data, but there is some missing. At the very beginning I filled any missing ratings with 0. The only other columns that contained any missing data at all are the "name" column, the "review" column, and the "description" column. However, I would have to say that I don't think any of these would be considered NMAR, or "Not Missing at Random." The reason is that I believe these are missing by design. If there is no description listed, for example, it is probably because the person that submitted the recipe didn't put a description. That would be missing by design, rather than not missing at random.
 
+In order to determine the missigness mechanism of the "review" column, I decided to run permutation tests with the "review" column and the "n_steps" and "minutes" columns. I wanted to see if recipes with missing reviews tended to have a higher number of steps or minutes. Here is the result:
 
+<iframe
+  src="assets/permgraph.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+As you can see, the difference between the mean number of steps for recipes with and without missing reviews was abnormally high, higher than any experimental result. Thus we can conclude that they are in fact  related, so reviews are missing at random with respect to the number of steps.
 
 # Hypothesis Testing
+
+The null hypothesis for my permutation test will be that recipes with "easy" in the title have, on average, the same ingredient name length than recipes without "easy" in the title. The alternative hypothesis is that recipes with "easy" in the title tend to have longer ingredient names. I figured that this could plausibly be the case, since if a recipe is "easy" it might be that way because it uses preprocessed foods with longer names.
+
+My choice of test statistic was: average average ingredient name length for easy recipes - average average ingredient name length of non-easy recipes.
+
+This is a bit confusing, so I'll explain. First, for each recipe you look at all of its ingredients, and you average the lengths. Then, for the recipes with easy, you average all of those averages. Same for non-easy recipes. Then you subtract them, and if the alternative hypothesis is true you should get a notably positive number. I used a significance level of 0.05, which is standard. However, it didn't really matter, since the results of my permutation test gave me a p-value of exactly 0. 
+
+This result means we would reject the null hypothesis. We can't prove the alternative hypothesis, but it does seem to be that there is a relationship between a recipe being easy or not and how long the ingredient names are.
 
 # Framing a Prediction Problem
 
