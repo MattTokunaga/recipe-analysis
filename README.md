@@ -126,7 +126,11 @@ Using machine learning, I set out to use features in the data to predict how lon
 
 # Baseline Model
 
+I have to come clean. I actually simplified the problem for myself. I decided to only keep the smallest 99% of recipes with respect to the minutes they take. This is because I figured having the huge outliers, like the recipes that take over one million minutes, would make it impossible to build a model that scores well. Not only that, but needing to account for those outliers wouls probably shift the model parameters enough that it wouldn't even perform well for the most common recipes, the ones that take a reasonable amount of time. If you believe that makes me a cheater and a liar, I humbly accept those titles.
 
+To start with, I set up a very simple model. Using the `sklearn` library for Python, I set up a simple linear regression model that takes in two variables, the number of steps and the average rating, and tries to predict the minutes it takes to prepare the recipe. These two features are both quantitative, so no encoding was necessary. I also didn't transform them in any way.
+
+The performance was, as excpected, not great. The root mean square error was around 80, which isn't very good if you're trying to predict the time for recipes that take usually around 60 minutes. However, for only using two very basic features, this was promising. 
 
 # Final Model
 
