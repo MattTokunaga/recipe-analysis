@@ -17,16 +17,25 @@ First let's start with the data. What exactly are we looking at? Well we actuall
 In reality though, there are way more columns than this. I just chose to show the ones that would look the cleanest, but here's a description of all the columns:
 
 | Column name | Description |
-| `name` | Recipe name |
-| `id` | Recipe ID (unique) | 
-| `minutes` | Minutes to make recipe | 
-| `contributor_id` | User id of user who submitted recipe | 
-| `submitted` | Date submitted to website | 
-| `tags` | tags | 
-| `nutrition` | Nutrition information. Format: calores, total fat, sugar, sodium, protein, saturated fat, carbohydrates. Unit is percentage of daily value | 
-| `n_steps` | Number of steps it takes to make the recipe | 
-| `steps` | Description of each step | 
-| `description` | Recipe description | 
+| `name`      | Recipe name |
+| `id`        | Recipe ID (unique) | 
+| `minutes`   | Minutes to make recipe | 
+| `tags`      | tags | 
+| `nutrition` | Nutrition information. Format: calores, total fat, sugar, sodium, protein, saturated fat, carbohydrates. Unit is percentage of daily value   | 
+| `n_steps`   | Number of steps it takes to make the recipe | 
+
+Additionally, there's actually another dataset, although it contains mostly the same information. The only difference is that it contains reviews and ratings for the recipes. 
+
+|          user_id |   recipe_id |   rating |
+|-----------------:|------------:|---------:|
+|      1.29371e+06 |       40893 |        5 |
+| 126440           |       85009 |        5 |
+|  57222           |       85009 |        5 |
+| 124416           |      120345 |        0 |
+|      2.00019e+09 |      120345 |        2 |
+
+
+
 # Data Cleaning and Exploratory Data Analysis
 
 # Assessment of Missingness
