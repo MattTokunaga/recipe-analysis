@@ -56,8 +56,8 @@ This is the nutrition information in our final cleaned data looks like (showing 
 |      194.8 |          20 |       6 |       32 |        22 |              36 |               3 |
 |      194.8 |          20 |       6 |       32 |        22 |              36 |               3 |
 
-## 
-Exploratory Data Analysis
+## Exploratory Data Analysis
+
 One variable I decided to look at was the number of ingredients in each recipe. I was interested in the distribution of the number of ingredients, and decided to make a plot.
 <iframe
   src="assets/ingredient_amounts.html"
@@ -66,6 +66,7 @@ One variable I decided to look at was the number of ingredients in each recipe. 
   frameborder="0"
 ></iframe>
 
+The graph clearly shows that most recipes have around 8 ingredients, with anything above 20 or so being extremely unlikely. However, there is still a positive skew, mostly due to the fact that you can't have negative outliers in this context. You also can't really have exactly 0 ingredients for obvious reasons. 
 
 # Assessment of Missingness
 
