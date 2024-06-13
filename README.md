@@ -153,3 +153,11 @@ Unfortunately, this hyperparameter optimization didn't really matter. Most of th
 The performance of this final model is much, much better than the initial baseline model. The baseline model had an RMSE of about 80, while the final model had an RMSE of around 28. 
 
 # Fairness Analysis
+
+To do fairness analysis, I decided to split my data into two groups: vegetarian recipes and non-vegetarian recipes. To do this, I added a boolean column indicating whether or not the name of the recipe included the word "vegan" or "vegetarian." I evaluated both using the RMSE metric and did a permutation test. My null hypothesis was that my final model works equally well on recipes with either "vegan" or "vegetarian" in the title and recipes without those words in the title. My alternative hypothesis was that the model was significantly better on one group than the other. Importantly, I did not specify which group it performed better for, so this is a two tailed hypothesis. I picked my test statistic accordingly, and went for an absolute difference between the RMSE of the model for both groups. 
+
+The observed statistic was about 3.4, meaning that the RMSE was 3.4 higher for one group than the other. The information about which group it was isn't built into the test statistic, but a simple `print` statement reveals that for vegetarian recipes the RMSE was about 25, while it was about 28.5 for all other recipes. Thus our model actually performed better on vegetarian recipes. 
+
+However, was this statistically significant? I ran a permutation test, shuffling the vegetarian indicator column, and then finding the absolute difference in RMSE for both columns I only did 100 shuffles since each one took about 3 seconds, which really adds up. I don't think it mattered too much though, since I got a p value of exactly 0. This means that in 0 out of the 100 trials did we get a test statistic as or more extreme than the observed statistic. This means we must reject the null hypothesis. This is just conjecture, but I think it would make sense if the model is just better for non-outliers, and the sample size of vegetarian recipes might be small enough that there are no outliers.
+
+Thank you for reading my analysis!
