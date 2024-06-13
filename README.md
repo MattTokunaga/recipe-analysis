@@ -1,2 +1,2 @@
-# Regression Based Recipe Analysis and PredictionAEGAJGHAOGH
+# Regression Based Recipe Analysis and Prediction
 # test!
