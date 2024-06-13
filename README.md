@@ -38,6 +38,7 @@ The columns in this one are pretty self explanatory. The only thing I didn't sho
 
 # Data Cleaning and Exploratory Data Analysis
 
+## Data Cleaning
 This data is honestly already pretty clean, but a few extra steps do need to be taken. First, I merged the two datasets together. This was possible thanks to the unique recipe ID that the website gives each recipe. Then, I averaged the ratings for each recipe to add an average rating column. 
 
 Additionally, the datasets included a weird quirk. Instead of actual lists, some columns, such as "tags," contained information that looked like a list but was actually just one long string. However, splitting the strings and turning them into actual lists was simple using the `.split` command in Python.
@@ -55,6 +56,15 @@ This is the nutrition information in our final cleaned data looks like (showing 
 |      194.8 |          20 |       6 |       32 |        22 |              36 |               3 |
 |      194.8 |          20 |       6 |       32 |        22 |              36 |               3 |
 
+## 
+Exploratory Data Analysis
+One variable I decided to look at was the number of ingredients in each recipe. I was interested in the distribution of the number of ingredients, and decided to make a plot.
+<iframe
+  src="assets/ingredient_amounts.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 
 # Assessment of Missingness
