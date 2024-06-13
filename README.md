@@ -14,8 +14,19 @@ First let's start with the data. What exactly are we looking at? Well we actuall
 | millionaire pound cake               | 286009 |       120 |         7 |
 | 2000 meatloaf                        | 475785 |        90 |        17 |
 
+In reality though, there are way more columns than this. I just chose to show the ones that would look the cleanest, but here's a description of all the columns:
 
-
+| Column name | Description |
+| `name` | Recipe name |
+| `id` | Recipe ID (unique) | 
+| `minutes` | Minutes to make recipe | 
+| `contributor_id` | User id of user who submitted recipe | 
+| `submitted` | Date submitted to website | 
+| `tags` | tags | 
+| `nutrition` | Nutrition information. Format: calores, total fat, sugar, sodium, protein, saturated fat, carbohydrates. Unit is percentage of daily value | 
+| `n_steps` | Number of steps it takes to make the recipe | 
+| `steps` | Description of each step | 
+| `description` | Recipe description | 
 # Data Cleaning and Exploratory Data Analysis
 
 # Assessment of Missingness
