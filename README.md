@@ -134,4 +134,22 @@ The performance was, as excpected, not great. The root mean square error was aro
 
 # Final Model
 
+In order to improve my model, I simply added more columns. I included information from the "tags," "name," "num_ratings," "calories," "n_steps," "av_rating," and "n_ingredients" columns. However, I only used those last 3 in their raw forms. For the calories and number of ratings, I turned them into binary variables. The way this works is you pick a threshold and say anything above that is a 1 and anything below that is a 0. 
+
+I "binarized" these two columns in particular because it felt plausible that a recipe with more calories might be simply more food, or at least require more processing, and thus having an indicator for high caloric recipes would be useful. For the number of ratings, I thought that maybe recipes with more ratings would be more "ordinary," in that they probably wouldn't be massive outliers in any particular area. I figured this because an abnormal recipe would be less likely to actually get made and rated.
+
+For the "tags" and "name" columns, I had to get a bit more creative. That's because these columns aren't quantitative, meaning they aren't numbers. That means they can't be used in their raw forms, and so I had to find a way to transform them.
+
+For the "tags" feature, I decided to use one-hot-encoding. This process involves making a new column for every single possible tag, and then putting a 1 if that particular recipe has that tag and a 0 otherwise. Obviously this increases the complexity by quite a bit, and so it took a while to train. However, I had good reason to believe this would help. Certain tags, something like "10 minutes or less," would be highly related to the time the recipe is meant to take. 
+
+I decided to do a similar thing with the "name" column. My general idea was that seeing which adjectives were in the title could give good indications on recipe duration. For example, if a recipe had "easy" in the title, or if it had "gourmet" in the title, it might be faster or slower than average, respectively. So first I found a big list of adjectives [here](https://patternbasedwriting.com/elementary_writing_success/list-4800-adjectives/). Then I made a list of every single word that appears even once in any recipe name. After that, I found the ones that are on the adjective list, meaning they're adjectives, and filtered for ones that are used over 5000 times total. Finally, I used the same one-hot-encoding trick for these adjectives.
+
+For my modeling algorithm, I chose a simple `sklearn` Linear Regression model. I played around with a couple other regressino options, but none seemed to outperform this one, and this one is the most basic. 
+
+My main engineered feature, the one hot encoded columns, didn't really require any hyperparameter optimization. However, one thing I could optimize was the thresholds for the binarizers. I decided to, for each column, set the threshold to be the quintiles (20th, 40th, 60th, 80th percentiles. 0 and 100 wouldn't be very helpful) for their respective variables. This meant, in total, I had 16 hyperparameter combinations to check, since there were 4 options for each binarizer.
+
+Unfortunately, this hyperparameter optimization didn't really matter. Most of the combinations were basically the exact same, and I suspect this is because the binary columns didn't really play much of a role in the calculations anyways.
+
+The performance of this final model is much, much better than the initial baseline model. The baseline model had an RMSE of about 80, while the final model had an RMSE of around 28. 
+
 # Fairness Analysis
