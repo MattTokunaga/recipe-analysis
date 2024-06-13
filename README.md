@@ -141,6 +141,17 @@ To start with, I set up a very simple model. Using the `sklearn` library for Pyt
 
 The performance was, as excpected, not great. The root mean square error was around 80, which isn't very good if you're trying to predict the time for recipes that take usually around 60 minutes. However, for only using two very basic features, this was promising. 
 
+Here's the first few predictions, as well as the real values:
+
+|   Real Minutes |   Predicted Minutes |   Difference |
+|---------------:|--------------------:|-------------:|
+|            375 |             90.9077 |    284.092   |
+|              5 |             42.5247 |    -37.5247  |
+|             40 |             44.511  |     -4.51097 |
+|              5 |             38.291  |    -33.291   |
+|             45 |             64.6864 |    -19.6864  |
+
+
 # Final Model
 
 In order to improve my model, I simply added more columns. I included information from the "tags," "name," "num_ratings," "calories," "n_steps," "av_rating," and "n_ingredients" columns. However, I only used those last 3 in their raw forms. For the calories and number of ratings, I turned them into binary variables. The way this works is you pick a threshold and say anything above that is a 1 and anything below that is a 0. 
