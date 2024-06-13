@@ -120,6 +120,15 @@ This is a bit confusing, so I'll explain. First, for each recipe you look at all
 
 This result means we would reject the null hypothesis. We can't prove the alternative hypothesis, but it does seem to be that there is a relationship between a recipe being easy or not and how long the ingredient names are.
 
+<iframe
+  src="assets/sect4graph.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Here, like last time, you can see that our observed statistic isn't even close to any of the experimental test statistics.
+
 # Framing a Prediction Problem
 
 Using machine learning, I set out to use features in the data to predict how long a recipe would take, in minutes. This is a regression problem, since we are trying to predict a continuous, quantitative variable. I chose this variable to predict because, out of all of them, it seems like it would be the most related to other variables. I'm evaluating my model using root mean square error, which is a good metric for continuous data. I thought it would be better to use this than something like R squared because I wanted to know, generally, how far off my predictions were, and not how correlated they were.
